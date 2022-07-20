@@ -1,9 +1,14 @@
 
 *Universidad San Carlos de Guatemala*
+
 *Facultad de Ingeniería*
+
 *Escuela de Ciencias y Sistemas*
+
 *Lenguajes Formales y de Programación*
+
 *Laboratorio Lenguajes Formales y de Programación*
+
 *Auxiliar: DIEGO ANDRÉS OBÍN ROSALES*
 
     EJEMPLOS DE LABORATORIO
