@@ -1,0 +1,3 @@
+1,Andrea,Rodriguez,20,andrea@gmail.com
+2,Fredy,Quijada,20,fredy@gmail.com
+3,Harry,Gomez,21,harry@gmail.com
