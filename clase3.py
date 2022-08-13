@@ -9,8 +9,8 @@ def Saludo(nombre):
     print('Hola ', nombre, ' estas en LFP B+')
     
 
-print(Suma(2,4))
-print(Saludo('Damaris'))
+# print(Suma(2,4))
+# print(Saludo('Damaris'))
 
 
 # CLASES
@@ -65,11 +65,11 @@ class Analizador:
             alumnos.append(alumno)
         return alumnos
 
-alumnos = Analizador.Lectura('carpeta/clase3.txt')
-if alumnos!= []:
-    a2 = Analizador.Lectura('carpeta/clase3.txt')
-    for a in a2:
-        alumnos.append(a)
+# alumnos = Analizador.Lectura('carpeta/clase3.txt')
+# if alumnos!= []:
+#     a2 = Analizador.Lectura('carpeta/clase3.txt')
+#     for a in a2:
+#         alumnos.append(a)
 
-for alumno in alumnos:
-    print(alumno.getNombre(),' ', alumno.getApellido(), ' ', alumno.getCorreo())
+# for alumno in alumnos:
+#     print(alumno.getNombre(),' ', alumno.getApellido(), ' ', alumno.getCorreo())
