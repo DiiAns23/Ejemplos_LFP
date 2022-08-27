@@ -1,0 +1,6 @@
+<Tipo>
+    <Operacion=SUMA>
+        <Numero> 4.6 </Numero>
+        <Numero> 6 </Numero>
+    </Operacion>
+</Tipo>
