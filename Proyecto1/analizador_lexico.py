@@ -1,6 +1,7 @@
 from numero import Numero # Importamos la clase Numero para la creacion del objeto Numero
 from aritmeticas import Aritmeticas # Lo mismo para la clase de creacion de Operaciones
 from operador import Operador # Los operadores Mas, Menos... 
+from errores import Errores
 
 # Aqui se declaran los nombres de los tokens
 tokens = (
@@ -73,7 +74,9 @@ t_ignore = " \t"
 
 # Este es un error léxico, pueden irlos almacenando en un array para obtenerlos después
 def t_error(t):
-    print("Error Lexico, no se reconoce: '%s'" % t.value[0])
+    # print("Error Lexico, no se reconoce: '%s'" % t.value[0])
+    error = Errores(t.value[0],'Error Lexico', t.lineno, find_column(input,t))
+    errores_.append(error)
     t.lexer.skip(1)
 
 
@@ -170,11 +173,27 @@ def parse(input):
     lexer.lineno = 1
     return parser.parse(input)
 
+from generador import Generador
+genAux = Generador()
+generador = genAux.getInstance()
 f = open('analizador.txt', 'r')
 global input
-global errores
+global errores_
+errores_ = []
 input = f.read()
 f.close()
 variable = parse(input)
+
+# Esta variable nos sirve para determinar si queremos el Resultado o la Expresion Regular
+# True para regresar la expresion regular de la forma (3+4)*5....
+# False para regresar el resultado de la operacion 60
+getER = True
+
+# En el primer for vienen las operaciones como <Tipo>, <Escribir>, <Estilo>
+# En el segundo for vienen los nodos de <Operacion>, Texto de <Escribir>, Texto de <Estilo>
 for var in variable:
-    print(var[0].ejecutar())
+    for var_ in var:
+        print(var_.ejecutar(getER))
+
+for var in errores_:
+    print(var.toString())
