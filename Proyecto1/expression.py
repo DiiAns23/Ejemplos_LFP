@@ -7,5 +7,5 @@ class Expression(ABC):
         self.column = column
     
     @abstractmethod
-    def ejecutar(self):
+    def ejecutar(self, getER):
         pass

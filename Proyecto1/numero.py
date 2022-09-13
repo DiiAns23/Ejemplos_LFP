@@ -5,5 +5,5 @@ class Numero(Expression):
             self.valor = valor
             super().__init__(fila, column)
     
-        def ejecutar(self):
+        def ejecutar(self, getER):
             return self.valor

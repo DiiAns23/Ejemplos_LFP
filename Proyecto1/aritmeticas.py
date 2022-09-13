@@ -1,5 +1,6 @@
 from expression import *
 from operador import Operador
+from generador import Generador
 
 class Aritmeticas(Expression):
     
@@ -9,24 +10,33 @@ class Aritmeticas(Expression):
         self.tipo = tipo
         super().__init__(fila, column)
     
-    def ejecutar(self):
-        izq = self.left.ejecutar()
-        der = self.right.ejecutar()
+    def ejecutar(self, getER):
+        genAux = Generador()
+        generador = genAux.getInstance()
+        
+        izq = self.left.ejecutar(getER)
+        der = self.right.ejecutar(getER)
         if self.tipo == Operador.SUMA:
-            return izq + der
+            return generador.addExpresion(izq, der, '+') if getER else izq+der
         elif self.tipo == Operador.RESTA:
-            return izq - der
+            return generador.addExpresion(izq, der, '-') if getER else izq-der
+            # return izq - der
         elif self.tipo == Operador.MULTIPLICACION:
-            return izq * der
+            return generador.addExpresion(izq, der, '*') if getER else izq*der
+            # return izq * der
         elif self.tipo == Operador.DIVISION:
             if der != 0:
-                return izq / der
+                return generador.addExpresion(izq, der, '/') if getER else izq/der
+                # return izq / der
             else:
                 print("Error: Division por cero")
                 return None
         elif self.tipo == Operador.POTENCIA:
-            return izq ** der
+            return generador.addExpresion(izq, der, '^') if getER else izq**der
+            # return izq ** der
         elif self.tipo == Operador.MODULO:
-            return izq % der
+            return generador.addExpresion(izq, der, '%') if getER else izq%der
+            # return izq % der
         else:
             return 0
+        
