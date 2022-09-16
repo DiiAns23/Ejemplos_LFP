@@ -15,28 +15,32 @@ class Aritmeticas(Expression):
         generador = genAux.getInstance()
         
         izq = self.left.ejecutar(getER)
-        der = self.right.ejecutar(getER)
-        if self.tipo == Operador.SUMA:
-            return generador.addExpresion(izq, der, '+') if getER else izq+der
-        elif self.tipo == Operador.RESTA:
-            return generador.addExpresion(izq, der, '-') if getER else izq-der
-            # return izq - der
-        elif self.tipo == Operador.MULTIPLICACION:
-            return generador.addExpresion(izq, der, '*') if getER else izq*der
-            # return izq * der
-        elif self.tipo == Operador.DIVISION:
-            if der != 0:
-                return generador.addExpresion(izq, der, '/') if getER else izq/der
-                # return izq / der
+        if self.right != None:
+            der = self.right.ejecutar(getER)
+            if self.tipo == Operador.SUMA:
+                return generador.addExpresion(izq, der, '+') if getER else izq+der
+            elif self.tipo == Operador.RESTA:
+                return generador.addExpresion(izq, der, '-') if getER else izq-der
+                # return izq - der
+            elif self.tipo == Operador.MULTIPLICACION:
+                return generador.addExpresion(izq, der, '*') if getER else izq*der
+                # return izq * der
+            elif self.tipo == Operador.DIVISION:
+                if der != 0:
+                    return generador.addExpresion(izq, der, '/') if getER else izq/der
+                    # return izq / der
+                else:
+                    print("Error: Division por cero")
+                    return None
+            elif self.tipo == Operador.POTENCIA:
+                return generador.addExpresion(izq, der, '^') if getER else izq**der
+                # return izq ** der
+            elif self.tipo == Operador.MODULO:
+                return generador.addExpresion(izq, der, '%') if getER else izq%der
+                # return izq % der
             else:
-                print("Error: Division por cero")
-                return None
-        elif self.tipo == Operador.POTENCIA:
-            return generador.addExpresion(izq, der, '^') if getER else izq**der
-            # return izq ** der
-        elif self.tipo == Operador.MODULO:
-            return generador.addExpresion(izq, der, '%') if getER else izq%der
-            # return izq % der
+                return 0
         else:
-            return 0
-        
+            if self.tipo == Operador.INVERSO:
+                return generador.addExpresion(1, izq, '/') if getER else 1/izq
+                
