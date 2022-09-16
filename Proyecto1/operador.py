@@ -8,3 +8,4 @@ class Operador(Enum):
     DIVISION = 4
     POTENCIA = 5
     MODULO = 6
+    INVERSO = 7
