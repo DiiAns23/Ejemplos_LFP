@@ -1,7 +1,13 @@
-<Tipo> 
-    <Operacion= SUMA> 
-        <Numero> 4.5 </Numero> 
-        <Numero> 5.32 </Numero> 
+<Tipo> @
+    <Operacion ?= SUMA> 
+        <Operacion = SUMA> 
+            <Numero> ! 4.5 </Numero> 
+            <Numero> 5.32 </Numero> 
+        </Operacion> 
+        <Operacion = SUMA> 
+            <Numero> 4.5 </Numero> 
+            <Numero> 5.32 </Numero> 
+        </Operacion> 
     </Operacion> 
     <Operacion= INVERSO> 
         <Numero> 2 </Numero> 
@@ -9,7 +15,7 @@
 </Tipo>
 
 <Texto>
-"Aqui puede venir cualquier cosa que se coloque :3 ? ! # $"
+    "Aqui puede venir cualquier cosa que se coloque :3 ? ! # $"
 </Texto>
 
 <Funcion = ESCRIBIR>
