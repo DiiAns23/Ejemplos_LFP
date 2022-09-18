@@ -3,6 +3,9 @@ from numero import Numero # Importamos la clase Numero para la creacion del obje
 from aritmeticas import Aritmeticas # Lo mismo para la clase de creacion de Operaciones
 from operador import Operador # Los operadores Mas, Menos... 
 from errores import Errores
+from estilo import Estilo
+from funcion import Funcion
+
 
 # Aqui se declaran los nombres de los tokens
 tokens = (
@@ -150,6 +153,7 @@ lexer = lex.lex()
 # ANALIZADOR SINTACTICO
 # Definicion de la gramatica
 
+
 def p_init(t):
     'init : instrucciones'
     t[0] = t[1]
@@ -184,12 +188,10 @@ def p_instruccionTexto(t):
 
 def p_instruccionFuncion(t):
     'INSTFUNCION    :   LLAA RFUNCION IGUAL RESCRIBIR LLAC instrucciones_2 LLAA DIV RFUNCION LLAC'
-    print('Aqui solo tienen que subir las intrucciones con clases ', t[6])
-    t[0] = t[6]
+    t[0] = Funcion(t[6][0], t[6][1], t[6][2], t.lineno(1), find_column(input,t.slice[1]))
 
 def p_instruccionEstilo(t):
     'INSTESTILO     :   LLAA RESTILO LLAC instrucciones_2 LLAA DIV RESTILO LLAC'
-    print('Aqui solo tienen que subir las intrucciones con clases ', t[4])
     t[0] = t[4]
 
 def p_instrucciones_2_lista(t):
@@ -222,33 +224,27 @@ def p_instruccion_2_texto(t):
 
 def p_instruccion_2_titulo(t):
     'instruccion_2 : LLAA RTITULO LLAC ROPERACIONES LLAA DIV RTITULO LLAC'
-    print('Aqui solo tienen que subir las intrucciones con clases ', t[4])
     t[0] = t[4]
 
 def p_instruccion_2_descripcion(t):
     'instruccion_2 : LLAA RDESCRIPCION LLAC CORA RTEXTO2 CORC LLAA DIV RDESCRIPCION LLAC'
-    print('Aqui solo tienen que subir las intrucciones con clases ', t[5])
     t[0] = t[5]
 
 def p_instruccion_2_contenido(t):
     'instruccion_2 : LLAA RCONTENIDO LLAC CORA RTIPO2 CORC LLAA DIV RCONTENIDO LLAC'
-    print('Aqui solo tienen que subir las intrucciones con clases ', t[5])
     t[0] = t[5]
 
 def p_instruccion_2_titulo_2(t):
     'instruccion_2 : LLAA RTITULO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC'
-    print('Aqui solo tienen que subir las intrucciones con clases ', t[4])
-    t[0] = t[4]
+    t[0] = Estilo(t[2], t[5], t[8], t.lineno(1), find_column(input,t.slice[1]))
 
 def p_instruccion_2_descripcion_2(t):
     'instruccion_2 : LLAA RDESCRIPCION RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC'
-    print('Aqui solo tienen que subir las intrucciones con clases ', t[4])
-    t[0] = t[4]
+    t[0] = Estilo(t[2], t[5], t[8], t.lineno(1), find_column(input,t.slice[1]))
 
 def p_instruccion_2_contenido_2(t):
     'instruccion_2 : LLAA RCONTENIDO RCOLOR IGUAL COLOR RTAMANIO IGUAL ENTERO DIV LLAC'
-    print('Aqui solo tienen que subir las intrucciones con clases ', t[4])
-    t[0] = t[4]
+    t[0] = Estilo(t[2], t[5], t[8], t.lineno(1), find_column(input,t.slice[1]))
 
 def p_color(t):
     '''COLOR    : RAZUL 
@@ -259,7 +255,6 @@ def p_color(t):
                 | RGRIS 
                 | RCELESTE 
                 | RCAFE'''
-    print('Aqui pueden agregar mas colores, pero deben de agregarlos a la lista de tokens en la primera lista')
     t[0] = t[1]
 
 def p_tipo(t):
@@ -279,7 +274,6 @@ def p_tipo(t):
         t[0] = Operador.DIVISION
     elif t[1] == 'INVERSO':
         t[0] = Operador.INVERSO
-    print('Aqui pueden agregar las demas operaciones, pero deben de agregarlas a la lista de arriba')
 
 # Aqui reconoce un error de sintaxis, pueden crear un array e irlos agregando
 # para obtenerlos después
@@ -315,7 +309,7 @@ variable = parse(input)
 # Esta variable nos sirve para determinar si queremos el Resultado o la Expresion Regular
 # True para regresar la expresion regular de la forma (3+4)*5....
 # False para regresar el resultado de la operacion 60
-getER = True
+getER = False
 
 # En el primer for vienen las operaciones como <Tipo>, <Escribir>, <Estilo>
 # En el segundo for vienen los nodos de <Operacion>, Texto de <Escribir>, Texto de <Estilo>
@@ -326,6 +320,9 @@ if variable:
                 print(var_.ejecutar(getER))
         elif isinstance(var, Texto):
             print(var.ejecutar(getER))
+        elif isinstance(var, Funcion):
+            print(var.ejecutar(getER))
+
 
 for var in errores_:
     print(var.toString())
