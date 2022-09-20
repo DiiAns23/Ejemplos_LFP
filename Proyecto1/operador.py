@@ -9,3 +9,8 @@ class Operador(Enum):
     POTENCIA = 5
     MODULO = 6
     INVERSO = 7
+    TANGENTE = 8
+    COSENO = 9
+    SENO = 10
+    RAIZ = 11
+    

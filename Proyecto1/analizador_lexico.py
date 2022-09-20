@@ -28,6 +28,11 @@ tokens = (
     'RMULTIPLICACION',
     'RDIVISION',
     'RINVERSO',
+    'RPOTENCIA',
+    'RRAIZ',
+    'RSENO',
+    'RCOSENO',
+    'RTANGENTE',
     'RESCRIBIR',
     'LLAA',
     'LLAC',
@@ -69,6 +74,11 @@ t_RRESTA       = r'RESTA'
 t_RMULTIPLICACION = r'MULTIPLICACION'
 t_RDIVISION = r'DIVISION'
 t_RINVERSO = r'INVERSO'
+t_RPOTENCIA = r'POTENCIA'
+t_RRAIZ = r'RAIZ'
+t_RSENO = r'SENO'
+t_RCOSENO = r'COSENO'
+t_RTANGENTE = r'TANGENTE'
 t_RESCRIBIR = r'ESCRIBIR'
 t_RNUMERO     = r'Numero'
 t_LLAA        = r'<'
@@ -136,7 +146,7 @@ t_ignore = " \t"
 # Este es un error léxico, pueden irlos almacenando en un array para obtenerlos después
 def t_error(t):
     # print("Error Lexico, no se reconoce: '%s'" % t.value[0])
-    error = Errores(t.value[0],'Error Lexico', t.lineno, find_column(input,t))
+    error = Errores(t.value[0],'Error Lexico', find_column(input,t),t.lineno)
     errores_.append(error)
     t.lexer.skip(1)
 
@@ -263,6 +273,11 @@ def p_tipo(t):
             |   RMULTIPLICACION
             |   RDIVISION
             |   RINVERSO
+            |   RRAIZ
+            |   RPOTENCIA
+            |   RSENO
+            |   RCOSENO
+            |   RTANGENTE
     '''
     if t[1] == 'SUMA':
         t[0] = Operador.SUMA
@@ -274,11 +289,22 @@ def p_tipo(t):
         t[0] = Operador.DIVISION
     elif t[1] == 'INVERSO':
         t[0] = Operador.INVERSO
+    elif t[1] == 'RAIZ':
+        t[0] = Operador.RAIZ
+    elif t[1] == 'POTENCIA':
+        t[0] = Operador.POTENCIA
+    elif t[1] == 'SENO':
+        t[0] = Operador.SENO
+    elif t[1] == 'COSENO':
+        t[0] = Operador.COSENO
+    elif t[1] == 'TANGENTE':
+        t[0] = Operador.TANGENTE
+
 
 # Aqui reconoce un error de sintaxis, pueden crear un array e irlos agregando
 # para obtenerlos después
 def p_error(t):
-    print("Error de sintaxis en '%s'" % t.value)
+    print("Error de sintaxis en '%s'" % t.value," Linea:", t.lineno, " Columna:",find_column(input,t))
 
 # Esta función busca la columna en la que se encuentra el token o lexema
 def find_column(inp, tk):
@@ -298,7 +324,7 @@ def parse(input):
 from generador import Generador
 genAux = Generador()
 generador = genAux.getInstance()
-f = open('analizador.txt', 'r')
+f = open('compleja.txt', 'r')
 global input
 global errores_
 errores_ = []

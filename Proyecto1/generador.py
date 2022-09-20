@@ -9,3 +9,6 @@ class Generador:
         
     def addExpresion(self, n1, n2, tipo):
         return f'({n1} {tipo} {n2})'
+
+    def addTrigonometrica(self, n1, tipo):
+        return f'{tipo}({n1})'
