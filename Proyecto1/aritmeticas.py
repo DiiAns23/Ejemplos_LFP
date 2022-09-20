@@ -1,6 +1,7 @@
 from expression import *
 from operador import Operador
 from generador import Generador
+import math
 
 class Aritmeticas(Expression):
     
@@ -38,9 +39,20 @@ class Aritmeticas(Expression):
             elif self.tipo == Operador.MODULO:
                 return generador.addExpresion(izq, der, '%') if getER else izq%der
                 # return izq % der
+            elif self.tipo == Operador.RAIZ:
+                return generador.addExpresion(izq, der, 'sqrt') if getER else izq**(1/der)
+                # return izq**(1/der)
             else:
                 return 0
         else:
             if self.tipo == Operador.INVERSO:
                 return generador.addExpresion(1, izq, '/') if getER else 1/izq
+            elif self.tipo == Operador.COSENO:
+                return generador.addTrigonometrica(izq, 'cos') if getER else math.cos(izq)
+            elif self.tipo == Operador.SENO:
+                return generador.addTrigonometrica(izq, 'sin') if getER else math.sin(izq)
+            elif self.tipo == Operador.TANGENTE:
+                return generador.addTrigonometrica(izq, 'tan') if getER else math.tan(izq)
+            else:
+                return 0
                 
