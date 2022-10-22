@@ -1,6 +1,7 @@
 class Generador:
 
     generador = None
+    tokens = []
 
     def getInstance(self):
         if Generador.generador is None:
@@ -12,3 +13,7 @@ class Generador:
 
     def addTrigonometrica(self, n1, tipo):
         return f'{tipo}({n1})'
+    
+    def addToken(self, token):
+        self.tokens.append(token)
+

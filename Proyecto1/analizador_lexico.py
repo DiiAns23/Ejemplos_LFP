@@ -324,7 +324,7 @@ def parse(input):
 from generador import Generador
 genAux = Generador()
 generador = genAux.getInstance()
-f = open('compleja.txt', 'r')
+f = open('compleja_.lfp', 'r')
 global input
 global errores_
 errores_ = []

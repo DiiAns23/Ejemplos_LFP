@@ -14,7 +14,7 @@ class Aritmeticas(Expression):
     def ejecutar(self, getER):
         genAux = Generador()
         generador = genAux.getInstance()
-        
+        generador.addToken('Operacion')
         izq = self.left.ejecutar(getER)
         if self.right != None:
             der = self.right.ejecutar(getER)
