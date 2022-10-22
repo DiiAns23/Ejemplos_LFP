@@ -1,0 +1,80 @@
+<Tipo>
+<Operacion=SUMA>
+    <Operacion=MULTIPLICACION>
+        <Numero>1020</Numero>
+        <Operacion = SUMA>
+            <Numero>2</Numero>
+            <Operacion=  SUMA>
+                <Numero>1</Numero>
+                <Numero>1</Numero>
+            </Operacion>
+        </Operacion>
+    </Operacion>
+
+    <Operacion=DIVISION>
+        <Numero>1000</Numero>
+        <Operacion = DIVISION>
+            <Numero>100</Numero>
+            <Numero>4</Numero>
+        </Operacion>
+    </Operacion>
+</Operacion>
+
+<Operacion=RESTA>
+    <Operacion=POTENCIA>
+        <Numero>3.1416</Numero>
+            <Operacion=POTENCIA>
+                <Numero>2</Numero>
+                <Numero>4</Numero>
+            </Operacion>
+    </Operacion>
+    <Operacion=RAIZ>
+        <Numero>2</Numero>
+        <Numero>64</Numero>
+    </Operacion>
+</Operacion>
+
+<Operacion=SUMA>
+    <Operacion=TANGENTE>
+        <Numero>30</Numero>
+    </Operacion>
+    <Operacion=INVERSO>
+        <Operacion=SUMA>
+            <Operacion=SENO>
+                <Numero>90</Numero>
+            </Operacion>
+            <Operacion=COSENO>
+                <Numero>90</Numero>
+            </Operacion>
+        </Operacion>
+    </Operacion>
+</Operacion>
+
+<Operacion=INVERSO>
+    <Operacion=MOD>
+        <Operacion=INVERSO>
+            <Numero> 0.111111 </Numero>
+        </Operacion>
+        <Numero> 2 </Numero>
+    </Operacion>
+</Operacion>
+</Tipo>
+
+<Texto>
+"Archivo de Pruebas Complejas"
+</Texto>
+
+<Funcion = ESCRIBIR>
+    <Titulo> Operaciones </Titulo>
+    <Descripcion> [TEXTO] </Descripcion>
+    <Contenido> [TIPO] </Contenido>
+</Funcion>
+
+<Estilo>
+    <Titulo Color=AZUL Tamanio=25/>
+    <Descripcion Color=VERDE Tamanio=15/>
+    <Contenido Color=NEGRO Tamanio=15/>
+</Estilo> 
+
+
+
